@@ -1,4 +1,4 @@
-# 🏘️ Ames Housing Price Predictor
+# Ames Housing Price Predictor
 
 This project provides a robust machine learning solution for predicting house prices in Ames, Iowa. 
 
