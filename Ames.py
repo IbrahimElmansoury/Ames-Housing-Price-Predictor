@@ -13,6 +13,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import LinearRegression
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import cross_val_score
 import joblib
 
 
@@ -127,10 +128,13 @@ master_pipeline.fit(X_train, y_train)
 
 y_pred = master_pipeline.predict(X_test)
 
+
+cross_val = cross_val_score(master_pipeline, X_train, y_train,scoring="r2" ,cv=5)
+print(f"Cross Validation Score: {cross_val.mean():.4f} +/- {cross_val.std():.4f}")
+
+
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 r2 = r2_score(y_test, y_pred)
-
-
 print(f"R-squared (R2): {r2:.4f}")
 print(f"Root Mean Squared Error (RMSE): ${rmse:,.2f}")
 
